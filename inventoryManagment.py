@@ -74,7 +74,16 @@ class App(customtkinter.CTk):
         customtkinter.set_widget_scaling(new_scaling_float)
 
     def sidebar_button_event(self):
-        print("sidebar_button click")
+        self.sidebar_button_1 = customtkinter.CTkButton(self.sidebar_frame, text= "test", command=self.sidebar_button_event)
+        self.sidebar_button_1.grid(row=1, column=0, padx=20, pady=10)
+        self.sidebar_button_2 = customtkinter.CTkButton(self.sidebar_frame, text= "2", command=self.sidebar_button_event)
+        self.sidebar_button_2.grid(row=2, column=0, padx=20, pady=10)
+        self.sidebar_button_3 = customtkinter.CTkButton(self.sidebar_frame, text= "3", command=self.sidebar_button_event)
+        self.sidebar_button_3.grid(row=3, column=0, padx=20, pady=10)
+        self.sidebar_button_4 = customtkinter.CTkButton(self.sidebar_frame, text= "4", command=self.sidebar_button_event)
+        self.sidebar_button_4.grid(row=4, column=0, padx=20, pady=10)
+
+    
 
 
 if __name__ == "__main__":
