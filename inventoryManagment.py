@@ -1,5 +1,5 @@
 from header import *
-import tkinter
+from tkinter import ttk
 import tkinter.messagebox
 import customtkinter
 
@@ -16,8 +16,7 @@ class App(customtkinter.CTk):
         self.geometry(f"{1100}x{580}")
 
         # configure grid layout (4x4)
-        self.grid_columnconfigure(1, weight=1)
-        self.grid_columnconfigure((2, 3), weight=0)
+        
         self.grid_rowconfigure((0, 1, 2), weight=1)
 
         # create sidebar frame with widgets
@@ -28,9 +27,9 @@ class App(customtkinter.CTk):
         self.logo_label = customtkinter.CTkLabel(self.sidebar_frame, text="Inventory \n Managment \n System", font=customtkinter.CTkFont(size=20, weight="bold"))
         self.logo_label.grid(row=0, column=0, padx=20, pady=(20, 10))
 
-        self.sidebar_button_1 = customtkinter.CTkButton(self.sidebar_frame, text= "Products", command=self.sidebar_button_event)
+        self.sidebar_button_1 = customtkinter.CTkButton(self.sidebar_frame, text= "Products", command=self.sidebar_products_event)
         self.sidebar_button_1.grid(row=1, column=0, padx=20, pady=10)
-        self.sidebar_button_2 = customtkinter.CTkButton(self.sidebar_frame, text= "Suppliers", command=self.sidebar_button_event)
+        self.sidebar_button_2 = customtkinter.CTkButton(self.sidebar_frame, text= "Suppliers", command=self.sidebar_suppliers_event)
         self.sidebar_button_2.grid(row=2, column=0, padx=20, pady=10)
         self.sidebar_button_3 = customtkinter.CTkButton(self.sidebar_frame, text= "Transactions", command=self.sidebar_button_event)
         self.sidebar_button_3.grid(row=3, column=0, padx=20, pady=10)
@@ -83,7 +82,22 @@ class App(customtkinter.CTk):
         self.sidebar_button_4 = customtkinter.CTkButton(self.sidebar_frame, text= "4", command=self.sidebar_button_event)
         self.sidebar_button_4.grid(row=4, column=0, padx=20, pady=10)
 
-    
+    def sidebar_products_event(self):
+        self.entry = customtkinter.CTkEntry(self, placeholder_text="Enter new product")
+        self.entry.grid(row=0, column=1, columnspan = 1, padx=(20, 0), pady=(20,20))
+
+    def sidebar_suppliers_event(self):
+        self.button = customtkinter.CTkButton(self, text = "Test")
+        self.button.grid(row=0, column=1, padx=10, pady=10)
+        self.entry = customtkinter.CTkEntry(self, placeholder_text="CTkEntry")
+        self.entry.grid(row=0, column = 2, columnspan = 2, padx=10)
+
+
+    def sidebar_transactions_event(self):
+        pass
+
+    def sidebar_inventory_event(self):
+        pass
 
 
 if __name__ == "__main__":
