@@ -52,9 +52,9 @@ class App(customtkinter.CTk):
     def sidebar_products_event(self):
         self.clear_frame(self.main_frame)
         self.drinks_label = customtkinter.CTkLabel(self.main_frame, text = "Drinks",font=ctk.CTkFont(size=20, weight="bold")).pack(side = "top", padx = 10)
-        self.drinks_button = customtkinter.CTkButton(self.main_frame, text = "Drinks", width = 150, height =150).pack(side = "left", pady = 10, padx = 10)
+        self.drinks_button = customtkinter.CTkButton(self.main_frame, text = "Drinks", width = 150, height =150).pack(side = "top", pady = 10, padx = 10)
         self.snacks_label = customtkinter.CTkLabel(self.main_frame, text = "Snacks",font=ctk.CTkFont(size=20, weight="bold")).pack(side = "top")
-        self.snacks_button = customtkinter.CTkButton(self.main_frame, text = "Snacks").pack(side = "right", pady = 10, padx = 10)
+        self.snacks_button = customtkinter.CTkButton(self.main_frame, text = "Snacks").pack(side = "top", pady = 10, padx = 10)
         
 
     def sidebar_suppliers_event(self):
@@ -66,8 +66,9 @@ class App(customtkinter.CTk):
     def sidebar_transactions_event(self):
         self.clear_frame(self.main_frame)
         self.textboxLabel = customtkinter.CTkLabel(self.main_frame, text = "Current Transactions", font=ctk.CTkFont(size=20, weight="bold")).pack(side = "top")
-        self.textbox = customtkinter.CTkTextbox(self.main_frame, width = 500, height =500).pack(side = "top")
-
+        self.textbox = customtkinter.CTkTextbox(self.main_frame, width = 500, height =500)
+        self.textbox.insert("0.0", "CTkTextbox\n\n" + "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.\n\n" * 20)
+        self.textbox.pack(side = "top")
 
     def sidebar_inventory_event(self):
         self.clear_frame(self.main_frame)
