@@ -1,4 +1,5 @@
 import customtkinter
+import tkinter as tk
 from header import *
 
 # Themes: "blue" (standard), "green", "dark-blue"
@@ -17,7 +18,7 @@ class App(customtkinter.CTk):
 
         self.geometry("1100x580")
         self.title("Inventory Management System")
-#sidebar Framef
+# sidebar Frame
         self.sidebar_frame = ctk.CTkFrame(self, width = 150, corner_radius=0)
         self.sidebar_frame.pack(side = 'left', fill = 'y')
 
@@ -31,18 +32,18 @@ class App(customtkinter.CTk):
 
 #Sidebar Buttons
         self.product_button = ctk.CTkButton(self.sidebar_frame, text= "Products", command = self.sidebar_products_event).pack(pady = 10)
-        self.supplier_button = ctk.CTkButton(self.sidebar_frame, text= "Suppliers", command = self.sidebar_suppliers_event).pack(pady = 10)
+        #self.supplier_button = ctk.CTkButton(self.sidebar_frame, text= "Suppliers", command = self.sidebar_suppliers_event).pack(pady = 10)
         self.transaction_button = ctk.CTkButton(self.sidebar_frame, text = "Transactions",command = self.sidebar_transactions_event).pack(pady = 10)
         self.inventory_button = ctk.CTkButton(self.sidebar_frame, text = "Inventory", command = self.sidebar_inventory_event).pack(pady = 10)
 
-        self.appearance_mode_label = customtkinter.CTkLabel(self.sidebar_frame, text="Appearance Mode:", anchor="w").pack()
+# Sidebar Appearance and Scaling
+        self.appearance_mode_label = customtkinter.CTkLabel(self.sidebar_frame, text="Appearance Mode:", anchor="w").pack(pady = 30)
         self.appearance_mode_optionemenu = customtkinter.CTkOptionMenu(self.sidebar_frame, values=["Dark", "Light", "System"],command=self.change_appearance_mode_event).pack()
-        
-        
-        self.scaling_label = customtkinter.CTkLabel(self.sidebar_frame, text="UI Scaling:", anchor="w").pack()
+
+        self.scaling_label = customtkinter.CTkLabel(self.sidebar_frame, text="UI Scaling:", anchor="w").pack(pady = 30)
         self.scaling_optionemenu = customtkinter.CTkOptionMenu(self.sidebar_frame, values=["100%", "110%", "120%", "90%", "80%"],command=self.change_scaling_event).pack()
         
-
+        
         
     def clear_frame(self, frame):
         for widgets in frame.winfo_children():
@@ -50,21 +51,23 @@ class App(customtkinter.CTk):
 
     def sidebar_products_event(self):
         self.clear_frame(self.main_frame)
-        self.entry = customtkinter.CTkEntry(self.main_frame, placeholder_text="Enter new product")
-        self.entry.pack()
+        self.drinks_label = customtkinter.CTkLabel(self.main_frame, text = "Drinks",font=ctk.CTkFont(size=20, weight="bold")).pack(side = "top", padx = 10)
+        self.drinks_button = customtkinter.CTkButton(self.main_frame, text = "Drinks", width = 150, height =150).pack(side = "left", pady = 10, padx = 10)
+        self.snacks_label = customtkinter.CTkLabel(self.main_frame, text = "Snacks",font=ctk.CTkFont(size=20, weight="bold")).pack(side = "top")
+        self.snacks_button = customtkinter.CTkButton(self.main_frame, text = "Snacks").pack(side = "right", pady = 10, padx = 10)
+        
 
     def sidebar_suppliers_event(self):
         self.clear_frame(self.main_frame)
         
-        self.button = customtkinter.CTkButton(self.main_frame, text = "Test")
-        self.button.pack()
-        self.entry = customtkinter.CTkEntry(self.main_frame, placeholder_text="CTkEntry")
-        self.entry.pack()
+        
 
 
     def sidebar_transactions_event(self):
         self.clear_frame(self.main_frame)
-       
+        self.textboxLabel = customtkinter.CTkLabel(self.main_frame, text = "Current Transactions", font=ctk.CTkFont(size=20, weight="bold")).pack(side = "top")
+        self.textbox = customtkinter.CTkTextbox(self.main_frame, width = 500, height =500).pack(side = "top")
+
 
     def sidebar_inventory_event(self):
         self.clear_frame(self.main_frame)
