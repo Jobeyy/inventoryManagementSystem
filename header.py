@@ -1,4 +1,5 @@
 from datetime import date
+import customtkinter as ctk
 
 class Product:
     def __init__(self, name, description, price, productID, supplier, quantity):
@@ -35,3 +36,5 @@ class User:
     pass
 class Inventory:
     pass
+
+# custom tkinter stuff
