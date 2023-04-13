@@ -11,7 +11,7 @@ class Page1(Page):
    def __init__(self, *args, **kwargs):
        Page.__init__(self, *args, **kwargs)
        label = ctk.CTkLabel(self, text="This is page 1")
-       label.pack(side="top", fill="both", expand=True)
+       label.pack(side="top", fill="x", expand=True)
 
 class Page2(Page):
    def __init__(self, *args, **kwargs):

@@ -18,12 +18,16 @@ class App(customtkinter.CTk):
         # configure grid layout (4x4)
         
         self.grid_rowconfigure((0, 1, 2), weight=1)
-
+        self.sidebar_width = 140
         # create sidebar frame with widgets
-        self.sidebar_frame = customtkinter.CTkFrame(self, width=140, corner_radius=0)
+        self.sidebar_frame = customtkinter.CTkFrame(self, width=self.sidebar_width, corner_radius=0)
         self.sidebar_frame.grid(row=0, column=0, rowspan=4, sticky="nsew")
         self.sidebar_frame.grid_rowconfigure(4, weight=1)
-        
+        # create frame for main area
+        self.main_frame = customtkinter.CTkFrame(self, width = 1100 - self.sidebar_width, height = 580)
+        self.main_frame.grid(row = 0, column = 1, columnspan = 3, rowspan =4)
+
+
         self.logo_label = customtkinter.CTkLabel(self.sidebar_frame, text="Inventory \n Managment \n System", font=customtkinter.CTkFont(size=20, weight="bold"))
         self.logo_label.grid(row=0, column=0, padx=20, pady=(20, 10))
 
@@ -63,7 +67,9 @@ class App(customtkinter.CTk):
       
        
        
-   
+    def clear_frame(self, frame):
+        for widgets in frame.winfo_children():
+            widgets.destroy()
 
     def change_appearance_mode_event(self, new_appearance_mode: str):
         customtkinter.set_appearance_mode(new_appearance_mode)
@@ -83,6 +89,7 @@ class App(customtkinter.CTk):
         self.sidebar_button_4.grid(row=4, column=0, padx=20, pady=10)
 
     def sidebar_products_event(self):
+        self.clear_frame(self.main_frame)
         self.entry = customtkinter.CTkEntry(self, placeholder_text="Enter new product")
         self.entry.grid(row=0, column=1, columnspan = 1, padx=(20, 0), pady=(20,20))
 
