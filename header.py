@@ -33,7 +33,36 @@ class Transaction:
 class Supplier:
     pass
 class User:
-    pass
+    def __init__(self, userID, name, email, password, phoneNumber, balance):
+        self.__userID = userID   
+        self.__name = name  
+        self.__email = email   
+        self.__password = password  
+        self.__phoneNumber = phoneNumber   
+        self.__transactionList = [] 
+        self.__balance = balance
+        self.__userID = userID
+
+    def deposit(self, inDeposit):
+        self.__balance += inDeposit
+
+    def purchase(self, inTransaction):
+        itemsPrice = inTransaction.price * inTransaction.quantity
+
+        if (self.__balance > itemsPrice):
+            self.__balance -= itemsPrice
+            self.__transactionList.append(inTransaction)
+        else:
+            pass
+
+    def getDetails(self):
+        list = (self.__userID, self.__name, self.__email, self.__password, self.__phoneNumber, self.__balance)
+        return list
+    
+    def getTransactions(self):
+        return self.__transactionList
+    
+
 class Inventory:
     pass
 
