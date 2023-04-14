@@ -1,5 +1,5 @@
 from datetime import date
-import customtkinter as ctk
+
 from datetime import datetime
 
 class Product:
