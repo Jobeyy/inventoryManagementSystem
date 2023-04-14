@@ -16,37 +16,46 @@ class App(customtkinter.CTk):
         
         self.geometry("1100x580")
         self.title("Inventory Management System")
-# sidebar Frame
-        self.sidebar_frame = ctk.CTkFrame(self, width = 150, corner_radius=0, border_color = "gray30", border_width = 1)
-        self.sidebar_frame.pack(side = 'left', fill = 'y')
+
+        self.createMainView()
 
 # Main Frame
         self.main_frame = ctk.CTkFrame(self, corner_radius=0)
         self.main_frame.pack(side= "right", fill= "both", expand = True )
 
-# Sidebar stuff
+
+        
+
+
+        
+       
+        
+
+        
+        
+
+    def createMainView(self):
+        # sidebar Frame
+        self.sidebar_frame = ctk.CTkFrame(self, width = 150, corner_radius=0, border_color = "gray30", border_width = 1)
+        self.sidebar_frame.pack(side = 'left', fill = 'y')
+
+        # Sidebar stuff
         self.logo_label = ctk.CTkLabel(self.sidebar_frame, text="Inventory \n Managment \n System", font=ctk.CTkFont(size=20, weight="bold"))
         self.logo_label.pack(padx = 20, pady = 20)
 
-#Sidebar Buttons
-        
-       
+        #Sidebar Buttons
         self.product_button = ctk.CTkButton(self.sidebar_frame, text= "Products", command = self.sidebar_products_event).pack(pady = 10)
         #self.supplier_button = ctk.CTkButton(self.sidebar_frame, text= "Suppliers", command = self.sidebar_suppliers_event).pack(pady = 10)
         self.transaction_button = ctk.CTkButton(self.sidebar_frame, text = "Transactions",command = self.sidebar_transactions_event).pack(pady = 10)
         self.inventory_button = ctk.CTkButton(self.sidebar_frame, text = "Inventory", command = self.sidebar_inventory_event).pack(pady = 10)
         
-        
-
-# Sidebar Appearance and Scaling
+        # Sidebar Appearance and Scaling
         self.appearance_mode_label = customtkinter.CTkLabel(self.sidebar_frame, text="Appearance Mode:", anchor="w").pack(pady = 30)
         self.appearance_mode_optionemenu = customtkinter.CTkOptionMenu(self.sidebar_frame, values=["Dark", "Light", "System"],command=self.change_appearance_mode_event).pack()
 
-        #self.scaling_label = customtkinter.CTkLabel(self.sidebar_frame, text="UI Scaling:", anchor="w").pack(pady = 30)
-        #self.scaling_optionemenu = customtkinter.CTkOptionMenu(self.sidebar_frame, values=["100%", "110%", "120%", "90%", "80%"],command=self.change_scaling_event).pack()
-        
-        
-        
+    def authenticate(self):
+        pass
+
     def clear_frame(self, frame):
         for widgets in frame.winfo_children():
             widgets.destroy()
