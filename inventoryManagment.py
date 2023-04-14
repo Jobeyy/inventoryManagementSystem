@@ -1,11 +1,11 @@
 import customtkinter
 import tkinter as tk
+from PIL import ImageTk, Image
 
 from header import *
 
 # Themes: "blue" (standard), "green", "dark-blue"
-customtkinter.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
-customtkinter.set_default_color_theme("blue") 
+
 
 
 
@@ -14,15 +14,9 @@ class App(customtkinter.CTk):
         super().__init__()
 
         
-        self.geometry("1100x580")
-        self.title("Inventory Management System")
-
+        self.authenticate()
+        
         self.createMainView()
-
-# Main Frame
-        self.main_frame = customtkinter.CTkFrame(self, corner_radius=0)
-        self.main_frame.pack(side= "right", fill= "both", expand = True )
-
 
         
 
@@ -35,7 +29,17 @@ class App(customtkinter.CTk):
         
 
     def createMainView(self):
+        customtkinter.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
+        customtkinter.set_default_color_theme("blue") 
         # sidebar Frame
+        self.geometry("1100x580")
+        self.title("Inventory Management System")
+        
+        
+
+        # Main Frame
+        self.main_frame = customtkinter.CTkFrame(self, corner_radius=0)
+        self.main_frame.pack(side= "right", fill= "both", expand = True )
         self.sidebar_frame = customtkinter.CTkFrame(self, width = 150, corner_radius=0, border_color = "gray30", border_width = 1)
         self.sidebar_frame.pack(side = 'left', fill = 'y')
 
@@ -54,7 +58,17 @@ class App(customtkinter.CTk):
         self.appearance_mode_optionemenu = customtkinter.CTkOptionMenu(self.sidebar_frame, values=["Dark", "Light", "System"],command=self.change_appearance_mode_event).pack()
 
     def authenticate(self):
-        pass
+        customtkinter.set_default_color_theme("green")
+        login_app = customtkinter.CTk()
+        login_app.geometry("600x440")
+        login_app.title('Login')
+
+        
+
+
+
+        login_app.mainloop()
+
 
     def clear_frame(self, frame):
         for widgets in frame.winfo_children():
