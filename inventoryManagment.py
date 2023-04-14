@@ -53,17 +53,20 @@ class App(customtkinter.CTk):
         self.clear_frame(self.main_frame)
         self.drinks_label = customtkinter.CTkLabel(self.main_frame, text = "Drinks",font=ctk.CTkFont(size=20, weight="bold"))
         self.drinks_label.place(x = 170, y = 150)
-        self.drinks_button = customtkinter.CTkButton(self.main_frame, text = "Drinks", width = 200, height =100)
+        self.drinks_button = customtkinter.CTkButton(self.main_frame, text = "Drinks", width = 200, height =100, command = self.drinks_products)
         self.drinks_button.place(x = 100, y = 200) 
         self.snacks_label = customtkinter.CTkLabel(self.main_frame, text = "Snacks",font=ctk.CTkFont(size=20, weight="bold"))
-        self.snacks_label.place(x = 445, y = 150)
+        self.snacks_label.place(x = 442, y = 150)
         self.snacks_button = customtkinter.CTkButton(self.main_frame, text = "Snacks", width = 200, height = 100)
         self.snacks_button.place(x = 375, y = 200)
         self.items_label = customtkinter.CTkLabel(self.main_frame, text = "Items",font=ctk.CTkFont(size=20, weight="bold"))
         self.items_label.place(x= 725, y = 150)
         self.items_button = customtkinter.CTkButton(self.main_frame, text = "Items",width = 200, height = 100 )
         self.items_button.place(x = 650, y = 200)
-        
+    def drinks_products(self):
+        self.clear_frame(self.main_frame)
+        self.blue_gatorade = customtkinter.CTkButton(self.main_frame, text = "Gatorade" )
+        self.blue_gatorade.place(x = 500, y = 100)
 
     def sidebar_suppliers_event(self):
         self.clear_frame(self.main_frame)
