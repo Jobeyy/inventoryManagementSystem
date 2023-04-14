@@ -1,5 +1,6 @@
 import customtkinter
 import tkinter as tk
+
 from header import *
 
 # Themes: "blue" (standard), "green", "dark-blue"
@@ -7,15 +8,12 @@ ctk.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
 ctk.set_default_color_theme("blue") 
 
 
+
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
-        self.title("Inventory Managment System")
-        self.geometry(f"{1100}x{580}")
-
- 
-
+        
         self.geometry("1100x580")
         self.title("Inventory Management System")
 # sidebar Frame
@@ -31,10 +29,14 @@ class App(customtkinter.CTk):
         self.logo_label.pack(padx = 20, pady = 20)
 
 #Sidebar Buttons
+        
+       
         self.product_button = ctk.CTkButton(self.sidebar_frame, text= "Products", command = self.sidebar_products_event).pack(pady = 10)
         #self.supplier_button = ctk.CTkButton(self.sidebar_frame, text= "Suppliers", command = self.sidebar_suppliers_event).pack(pady = 10)
         self.transaction_button = ctk.CTkButton(self.sidebar_frame, text = "Transactions",command = self.sidebar_transactions_event).pack(pady = 10)
         self.inventory_button = ctk.CTkButton(self.sidebar_frame, text = "Inventory", command = self.sidebar_inventory_event).pack(pady = 10)
+        
+        
 
 # Sidebar Appearance and Scaling
         self.appearance_mode_label = customtkinter.CTkLabel(self.sidebar_frame, text="Appearance Mode:", anchor="w").pack(pady = 30)
@@ -72,7 +74,10 @@ class App(customtkinter.CTk):
         self.clear_frame(self.main_frame)
         
         
-
+    def open_input_dialog_event(self):
+        dialog = customtkinter.CTkComboBox(text="Type in a number:", title="CTkInputDialog")
+        
+        print("CTkInputDialog:", dialog.get_input())
 
     def sidebar_transactions_event(self):
         self.clear_frame(self.main_frame)

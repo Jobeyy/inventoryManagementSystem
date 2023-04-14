@@ -37,4 +37,4 @@ class User:
 class Inventory:
     pass
 
-# custom tkinter stuff
+
