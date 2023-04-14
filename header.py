@@ -1,5 +1,6 @@
 from datetime import date
 import customtkinter as ctk
+from datetime import datetime
 
 class Product:
     def __init__(self, name, description, price, productID, supplier, quantity):
@@ -7,7 +8,6 @@ class Product:
         self.description = description
         self.price = price
         self.productID = productID
-        self.supplier = supplier
         self.quantity = quantity
         
     
@@ -23,15 +23,20 @@ class Product:
             "description" : self.description,
             "price" : self.price,
             "productID" : self.productID,
-            "supplier" : self.supplier,
             "quantity" : self.quantity
         }
         return list
     
 class Transaction:
-    pass
-class Supplier:
-    pass
+    def __init__(self, inOrderDate, inTransactionID, inQuantity):
+        self.orderDate = inOrderDate                #string
+        self.transactionID = inTransactionID        #int
+        self.quantity = inQuantity                  #int
+        self.transactionDate = (datetime.now()).isoformat()
+
+    def getDetails(self):
+        list = [self.orderDate, self.transactionID, self.quantity, self.transactionDate]
+        return list
 class User:
     def __init__(self, userID, name, email, password, phoneNumber, balance):
         self.__userID = userID   
