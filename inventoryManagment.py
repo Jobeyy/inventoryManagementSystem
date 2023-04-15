@@ -16,7 +16,6 @@ class App(customtkinter.CTk):
         
         self.authenticate()
         
-        self.createMainView()
 
         
 
@@ -29,18 +28,25 @@ class App(customtkinter.CTk):
         
 
     def createMainView(self):
+        #Check if their username and password is already in the system
+        # if it isnt, tell them to sign up. 
+        # if it is then continue 
+
+        self.login_app.destroy()
+        self.app = customtkinter.CTk()
+        
         customtkinter.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
         customtkinter.set_default_color_theme("blue") 
         # sidebar Frame
-        self.geometry("1100x580")
-        self.title("Inventory Management System")
+        self.app.geometry("1100x580")
+        self.app.title("Inventory Management System")
         
         
 
         # Main Frame
-        self.main_frame = customtkinter.CTkFrame(self, corner_radius=0)
+        self.main_frame = customtkinter.CTkFrame(self.app, corner_radius=0)
         self.main_frame.pack(side= "right", fill= "both", expand = True )
-        self.sidebar_frame = customtkinter.CTkFrame(self, width = 150, corner_radius=0, border_color = "gray30", border_width = 1)
+        self.sidebar_frame = customtkinter.CTkFrame(self.app, width = 150, corner_radius=0, border_color = "gray30", border_width = 1)
         self.sidebar_frame.pack(side = 'left', fill = 'y')
 
         # Sidebar stuff
@@ -56,20 +62,42 @@ class App(customtkinter.CTk):
         # Sidebar Appearance and Scaling
         self.appearance_mode_label = customtkinter.CTkLabel(self.sidebar_frame, text="Appearance Mode:", anchor="w").pack(pady = 30)
         self.appearance_mode_optionemenu = customtkinter.CTkOptionMenu(self.sidebar_frame, values=["Dark", "Light", "System"],command=self.change_appearance_mode_event).pack()
+        self.app.mainloop()
 
     def authenticate(self):
         customtkinter.set_default_color_theme("green")
-        login_app = customtkinter.CTk()
-        login_app.geometry("600x440")
-        login_app.title('Login')
+        
+        self.login_app = customtkinter.CTk()
+        self.login_app.geometry("600x440")
+        self.login_app.title('Login')
+
+        self.login_frame = customtkinter.CTkFrame(self.login_app, width = 320, height = 560, corner_radius = 15)
+        self.login_frame.place(relx = 0.5, rely = 0.5, anchor = tk.CENTER)
+
+        self.login_label = customtkinter.CTkLabel(self.login_frame, text = "Log into your Account", font=customtkinter.CTkFont(size=20, weight="bold"))
+        self.login_label.place(x = 50, y = 45)
+
+        self.username_entry = customtkinter.CTkEntry(self.login_frame, width = 220, placeholder_text = "Username")
+        self.username_entry.place(x = 50, y = 110)
+
+        self.password_entry = customtkinter.CTkEntry(self.login_frame, width = 220, placeholder_text="Password", show = "*")
+        self.password_entry.place(x= 50, y= 165)
+
+        self.login_button = customtkinter.CTkButton(self.login_frame, width = 220, text  = "Login", corner_radius= 6, command = self.createMainView)
+        self.login_button.place(x = 50, y =240)
+
+        self.sign_up_button = customtkinter.CTkButton(self.login_frame, width = 220,  text = "Sign Up", corner_radius= 6)
+        self.sign_up_button.place(x = 50, y = 290)
 
         
 
+        self.login_app.mainloop()
 
+        
+    def logged_in(self):
+        self.login_app.destroy()
 
-        login_app.mainloop()
-
-
+    
     def clear_frame(self, frame):
         for widgets in frame.winfo_children():
             widgets.destroy()
