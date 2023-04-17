@@ -94,8 +94,7 @@ class App(customtkinter.CTk):
         self.login_app.mainloop()
 
         
-    def logged_in(self):
-        self.login_app.destroy()
+    
 
     
     def clear_frame(self, frame):
@@ -110,17 +109,50 @@ class App(customtkinter.CTk):
         self.drinks_button.place(x = 100, y = 200) 
         self.snacks_label = customtkinter.CTkLabel(self.main_frame, text = "Snacks",font=customtkinter.CTkFont(size=20, weight="bold"))
         self.snacks_label.place(x = 442, y = 150)
-        self.snacks_button = customtkinter.CTkButton(self.main_frame, text = "Snacks", width = 200, height = 100)
+        self.snacks_button = customtkinter.CTkButton(self.main_frame, text = "Snacks", width = 200, height = 100, command = self.snack_products)
         self.snacks_button.place(x = 375, y = 200)
         self.items_label = customtkinter.CTkLabel(self.main_frame, text = "Items",font=customtkinter.CTkFont(size=20, weight="bold"))
         self.items_label.place(x= 725, y = 150)
         self.items_button = customtkinter.CTkButton(self.main_frame, text = "Items",width = 200, height = 100 )
         self.items_button.place(x = 650, y = 200)
+
     def drinks_products(self):
         self.clear_frame(self.main_frame)
-        self.blue_gatorade = customtkinter.CTkButton(self.main_frame, text = "Gatorade" )
-        self.blue_gatorade.place(x = 500, y = 100)
+        self.blue_gatorade = customtkinter.CTkButton(self.main_frame, text = "Blue Gatorade" , width = 200, height = 100)
+        self.blue_gatorade.place(x = 100, y = 100)
+        self.red_gatorade = customtkinter.CTkButton(self.main_frame, text = "Red Gatorade" , width = 200, height = 100)
+        self.red_gatorade.place(x = 375, y = 100)
+        self.yellow_gatorade = customtkinter.CTkButton(self.main_frame, text = "Yellow Gatorade", width = 200, height = 100)
+        self.yellow_gatorade.place(x = 650, y = 100)
 
+        self.muscle_milk = customtkinter.CTkButton(self.main_frame, text = "Muscle Milk", width = 200, height = 100)
+        self.muscle_milk.place(x = 100 , y = 250)
+        self.super_shake_chocolate = customtkinter.CTkButton(self.main_frame, text = "Super Shake Chocolate", width = 200, height = 100)
+        self.super_shake_chocolate.place(x = 375 , y = 250)
+        self.super_shake_vinilla = customtkinter.CTkButton(self.main_frame, text = "Muscle Milk", width = 200, height = 100)
+        self.super_shake_vinilla.place(x = 650 , y = 250)
+
+        self.water = customtkinter.CTkButton(self.main_frame, text = "Water", width = 200, height = 100).place(x = 100 , y = 400)
+        self.rockstar = customtkinter.CTkButton(self.main_frame, text = "Rockstar", width = 200, height = 100).place(x = 375, y = 400)
+        self.redbull = customtkinter.CTkButton(self.main_frame, text = "Redbull", width = 200, height = 100).place(x  = 650, y = 400)
+
+
+    def snack_products(self):
+        self.clear_frame(self.main_frame)
+        self.quest_double_chocolate = customtkinter.CTkButton(self.main_frame, text = "Quest Double Chocolate" , width = 200, height = 100).place(x = 100, y = 100)
+        self.quest_chocolate_chip = customtkinter.CTkButton(self.main_frame, text = "Quest Chocolate Chip" , width = 200, height = 100).place(x = 375, y = 100)
+        self.quest_pb = customtkinter.CTkButton(self.main_frame, text = "Quest PB", width = 200, height = 100).place(x = 650, y = 100)
+    
+        self.gatorade_chocolate_chip = customtkinter.CTkButton(self.main_frame, text = "Protein Bar Chocolate Chip", width = 200, height = 100).place(x = 100 , y = 250)
+        self.gatorade_pb = customtkinter.CTkButton(self.main_frame, text = "Protein Bar Peanut Butter", width = 200, height = 100).place(x = 375 , y = 250)
+        self.gatorade_caramel = customtkinter.CTkButton(self.main_frame, text = "Protein Bar Caramel", width = 200, height = 100).place(x = 650 , y = 250)
+    
+        self.loaded_taco = customtkinter.CTkButton(self.main_frame, text = "Quest Loaded Taco", width = 200, height = 100).place(x = 100 , y = 400)
+        self.chili_lime = customtkinter.CTkButton(self.main_frame, text = "Quest Chili Lime", width = 200, height = 100).place(x = 375, y = 400)
+        self.ranch = customtkinter.CTkButton(self.main_frame, text = "Quest Ranch", width = 200, height = 100).place(x  = 650, y = 400)
+
+    def item_products(self):
+        pass
     def sidebar_suppliers_event(self):
         self.clear_frame(self.main_frame)
         
