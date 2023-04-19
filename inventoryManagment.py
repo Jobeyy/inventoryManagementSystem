@@ -14,7 +14,7 @@ class App(customtkinter.CTk):
         super().__init__()
 
         
-        self.authenticate()
+        self.createMainView()
         
 
         
@@ -32,46 +32,22 @@ class App(customtkinter.CTk):
         # if it isnt, tell them to sign up. 
         # if it is then continue 
 
-        self.login_app.destroy()
-        self.app = customtkinter.CTk()
+        #self.login_app.destroy()
+        #self.app = customtkinter.CTk()
         
         customtkinter.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
-        customtkinter.set_default_color_theme("blue") 
+        customtkinter.set_default_color_theme("green") 
         # sidebar Frame
-        self.app.geometry("1100x580")
-        self.app.title("Inventory Management System")
+        self.geometry("1100x580")
+        self.title("Inventory Management System")
         
         
 
         # Main Frame
-        self.main_frame = customtkinter.CTkFrame(self.app, corner_radius=0)
+        self.main_frame = customtkinter.CTkFrame(self, corner_radius=0)
         self.main_frame.pack(side= "right", fill= "both", expand = True )
-        self.sidebar_frame = customtkinter.CTkFrame(self.app, width = 150, corner_radius=0, border_color = "gray30", border_width = 1)
-        self.sidebar_frame.pack(side = 'left', fill = 'y')
 
-        # Sidebar stuff
-        self.logo_label = customtkinter.CTkLabel(self.sidebar_frame, text="Inventory \n Managment \n System", font=customtkinter.CTkFont(size=20, weight="bold"))
-        self.logo_label.pack(padx = 20, pady = 20)
-
-        #Sidebar Buttons
-        self.product_button = customtkinter.CTkButton(self.sidebar_frame, text= "Products", command = self.sidebar_products_event).pack(pady = 10)
-        #self.supplier_button = ctk.CTkButton(self.sidebar_frame, text= "Suppliers", command = self.sidebar_suppliers_event).pack(pady = 10)
-        self.transaction_button = customtkinter.CTkButton(self.sidebar_frame, text = "Transactions",command = self.sidebar_transactions_event).pack(pady = 10)
-        self.inventory_button = customtkinter.CTkButton(self.sidebar_frame, text = "Inventory", command = self.sidebar_inventory_event).pack(pady = 10)
-        
-        # Sidebar Appearance and Scaling
-        self.appearance_mode_label = customtkinter.CTkLabel(self.sidebar_frame, text="Appearance Mode:", anchor="w").pack(pady = 30)
-        self.appearance_mode_optionemenu = customtkinter.CTkOptionMenu(self.sidebar_frame, values=["Dark", "Light", "System"],command=self.change_appearance_mode_event).pack()
-        self.app.mainloop()
-
-    def authenticate(self):
-        customtkinter.set_default_color_theme("green")
-        
-        self.login_app = customtkinter.CTk()
-        self.login_app.geometry("600x440")
-        self.login_app.title('Login')
-
-        self.login_frame = customtkinter.CTkFrame(self.login_app, width = 320, height = 560, corner_radius = 15)
+        self.login_frame = customtkinter.CTkFrame(self.main_frame, width = 320, height = 560, corner_radius = 15)
         self.login_frame.place(relx = 0.5, rely = 0.5, anchor = tk.CENTER)
 
         self.login_label = customtkinter.CTkLabel(self.login_frame, text = "Log into your Account", font=customtkinter.CTkFont(size=20, weight="bold"))
@@ -83,19 +59,35 @@ class App(customtkinter.CTk):
         self.password_entry = customtkinter.CTkEntry(self.login_frame, width = 220, placeholder_text="Password", show = "*")
         self.password_entry.place(x= 50, y= 165)
 
-        self.login_button = customtkinter.CTkButton(self.login_frame, width = 220, text  = "Login", corner_radius= 6, command = self.createMainView)
+        self.login_button = customtkinter.CTkButton(self.login_frame, width = 220, text  = "Login", corner_radius= 6, command = self.sidebar_frame)
         self.login_button.place(x = 50, y =240)
 
         self.sign_up_button = customtkinter.CTkButton(self.login_frame, width = 220,  text = "Sign Up", corner_radius= 6)
         self.sign_up_button.place(x = 50, y = 290)
+       
 
-        
-
-        self.login_app.mainloop()
-
-        
     
 
+    
+    def sidebar_frame(self):
+        self.clear_frame(self.main_frame)
+        customtkinter.set_default_color_theme("blue")
+        self.sidebar_frame = customtkinter.CTkFrame(self, width = 150, corner_radius=0, border_color = "gray30", border_width = 1)
+        self.sidebar_frame.pack(side = 'left', fill = 'y')
+
+        # Sidebar stuff
+        self.logo_label = customtkinter.CTkLabel(self.sidebar_frame, text="Inventory \n Managment \n System", font=customtkinter.CTkFont(size=20, weight="bold"))
+        self.logo_label.pack(padx = 20, pady = 20)
+
+        #Sidebar Buttons
+        self.product_button = customtkinter.CTkButton(self.sidebar_frame, text= "Products", command = self.sidebar_products_event).pack(pady = 10)
+#self.supplier_button = customtkinter.CTkButton(self.sidebar_frame, text= "Suppliers", command = self.sidebar_suppliers_event).pack(pady = 10)
+        self.transaction_button = customtkinter.CTkButton(self.sidebar_frame, text = "Transactions",command = self.sidebar_transactions_event).pack(pady = 10)
+        self.inventory_button = customtkinter.CTkButton(self.sidebar_frame, text = "Inventory", command = self.sidebar_inventory_event).pack(pady = 10)
+        
+        # Sidebar Appearance and Scaling
+        self.appearance_mode_label = customtkinter.CTkLabel(self.sidebar_frame, text="Appearance Mode:", anchor="w").pack(pady = 30)
+        self.appearance_mode_optionemenu = customtkinter.CTkOptionMenu(self.sidebar_frame, values=["Dark", "Light", "System"],command=self.change_appearance_mode_event).pack()
     
     def clear_frame(self, frame):
         for widgets in frame.winfo_children():
@@ -152,7 +144,8 @@ class App(customtkinter.CTk):
         self.ranch = customtkinter.CTkButton(self.main_frame, text = "Quest Ranch", width = 200, height = 100).place(x  = 650, y = 400)
 
     def item_products(self):
-        pass
+        self.clear_frame(self.main_frame)
+        
     def sidebar_suppliers_event(self):
         self.clear_frame(self.main_frame)
         
