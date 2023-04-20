@@ -14,17 +14,6 @@ class App(customtkinter.CTk):
         super().__init__()
         self.createMainView()
         
-
-        
-
-
-        
-       
-        
-
-        
-        
-
     def createMainView(self):
         '''Dont change'''
         #Check if their username and password is already in the system
@@ -223,8 +212,8 @@ class App(customtkinter.CTk):
 
         #Formating columns
         self.tree.column("#0", width = 0, stretch = "NO")
-        self.tree.column("Product", anchor = "w", width = 200)
-        self.tree.column("Amount", anchor = "center", width = 200)
+        self.tree.column("Product", anchor = "w", width = 300)
+        self.tree.column("Amount", anchor = "center", width = 300)
 
         # Creating Headings
         self.tree.heading("#0", text = "", anchor = "w")
@@ -239,7 +228,7 @@ class App(customtkinter.CTk):
                 self.tree.insert(parent='', index='end', iid=i, text='',
                                   values=(row[0], row[1]))
 
-        self.tree.pack(fill = 'both', expand=True)
+        self.tree.place(x = 150, y = 200)
 
     def change_appearance_mode_event(self, new_appearance_mode: str):
         customtkinter.set_appearance_mode(new_appearance_mode)
