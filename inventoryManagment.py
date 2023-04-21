@@ -14,6 +14,13 @@ class App(customtkinter.CTk):
         super().__init__()
         self.createMainView()
         
+
+
+
+
+
+
+        
     def createMainView(self):
         '''Dont change'''
         #Check if their username and password is already in the system
@@ -149,7 +156,7 @@ class App(customtkinter.CTk):
 
     def drinks_products(self):
         self.clear_frame(self.main_frame)
-        self.blue_gatorade = customtkinter.CTkButton(self.main_frame, text = "Blue Gatorade" , width = 200, height = 100)
+        self.blue_gatorade = customtkinter.CTkButton(self.main_frame,text = "Blue Gatorade" , width = 200, height = 100)
         self.blue_gatorade.place(x = 100, y = 100)
         self.red_gatorade = customtkinter.CTkButton(self.main_frame, text = "Red Gatorade" , width = 200, height = 100)
         self.red_gatorade.place(x = 375, y = 100)
@@ -185,6 +192,8 @@ class App(customtkinter.CTk):
     def item_products(self):
         self.clear_frame(self.main_frame)
         
+
+        
     def inventory_button(self):
         self.clear_frame(self.main_frame)
 
@@ -200,8 +209,14 @@ class App(customtkinter.CTk):
         self.clear_frame(self.main_frame)
         self.textboxLabel = customtkinter.CTkLabel(self.main_frame, text = "Current Transactions", font=customtkinter.CTkFont(size=20, weight="bold")).pack(side = "top")
         self.textbox = customtkinter.CTkTextbox(self.main_frame, width = 500, height =500)
-        self.textbox.insert("0.0", "CTkTextbox\n\n" + "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.\n\n" * 20)
-        self.textbox.pack(side = "top")
+        
+                              #empty dictionary
+        #with open('transactions.csv') as f:         #open file userData.csv
+            #reader = csv.reader(f)
+            #for row in reader:
+                #self.textbox.insert(f"0.0", str(row) "\n\n" )
+            #self.textbox.pack(side = "top")
+
 
     def sidebar_inventory_event(self):
         self.clear_frame(self.main_frame)
@@ -216,7 +231,7 @@ class App(customtkinter.CTk):
         self.tree.column("Amount", anchor = "center", width = 300)
 
         # Creating Headings
-        self.tree.heading("#0", text = "", anchor = "w")
+        self.tree.heading("#0", text = "", anchor = "w") # annoying unnecessary first thing i cannot change
         self.tree.heading("Product", text = "Product", anchor="w")
         self.tree.heading("Amount", text = "Amount", anchor= "center")
 
