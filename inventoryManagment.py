@@ -4,7 +4,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from PIL import Image
 import csv
-from datetime import datetime
+import datetime
 
 # Themes: "blue" (standard), "green", "dark-blue"
 
@@ -233,6 +233,8 @@ class App(customtkinter.CTk):
     def buy_button_dialog_event(self, nameOfProduct: str, prompt: str):
         dialog = customtkinter.CTkInputDialog(text=prompt, title= nameOfProduct)
         amount = dialog.get_input()
+        buyType = "Bought"
+        totalAmount = 0
         if amount:
             with open('inventory.csv', 'r') as file:
                 reader = csv.reader(file)
@@ -241,47 +243,69 @@ class App(customtkinter.CTk):
 
                 for row in reader:
                     if row[0] == nameOfProduct:
-                        row[1] = str(int(row[1]) + int(amount))    
+                        row[1] = str(int(row[1]) + int(amount))
+                        totalAmount = int(row[1])
                     data.append(row)
-
+            file.close()
+            # Updating transaction csv        
+            transaction_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            with open("transactions_log.csv", mode = 'a', newline = '') as file:
+                writer1 = csv.writer(file)
+                writer1.writerow([self.username, nameOfProduct, buyType, amount, transaction_time, totalAmount])
+            file.close()
             #update csv
             with open('inventory.csv', "w", newline = '') as file:
-                writer = csv.writer(file)
-                writer.writerows(data)
+                writer2 = csv.writer(file)
+                writer2.writerows(data)
+            file.close()
 
     def sell_button_dialog_event(self, nameOfProduct: str, prompt: str):
         dialog = customtkinter.CTkInputDialog(text=prompt, title= nameOfProduct)
         amount = dialog.get_input()
+        saleType = "Sold"
+        totalAmount = 0
         if amount:
             with open('inventory.csv', 'r') as file:
                 reader = csv.reader(file)
 
                 data = []
-
+                
                 for row in reader:
                     if row[0] == nameOfProduct:
                         if int(row[1]) >= int(amount):
-                            row[1] = str(int(row[1])- int(amount))
+                            row[1] = str(int(row[1]) - int(amount))
+                            totalAmount = int(row[1])
                         else:
                             messagebox.showerror(title = "Error", message = "Not enough items to sell")
                     data.append(row)
-
+            file.close()
+            # Update Transaction_log        
+            transaction_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            with open("transactions_log.csv", mode = 'a', newline = '') as file:
+                writer1 = csv.writer(file)
+                writer1.writerow([self.username, nameOfProduct, saleType, amount, transaction_time, totalAmount])
+            file.close()
             #update csv
             with open('inventory.csv', "w", newline = '') as file:
-                writer = csv.writer(file)
-                writer.writerows(data)
+                writer2 = csv.writer(file)
+                writer2.writerows(data)
+            file.close()
         
     def sidebar_transactions_event(self):
         self.clear_frame(self.main_frame)
         self.textboxLabel = customtkinter.CTkLabel(self.main_frame, text = "Current Transactions", font=customtkinter.CTkFont(size=20, weight="bold")).pack(side = "top")
-        self.textbox = customtkinter.CTkTextbox(self.main_frame, width = 500, height =500)
+        self.textbox = customtkinter.CTkTextbox(self.main_frame, width = 600, height =500)
+        data = []
         
-                              #empty dictionary
-        #with open('transactions.csv') as f:         #open file userData.csv
-            #reader = csv.reader(f)
-            #for row in reader:
-                #self.textbox.insert(f"0.0", str(row) "\n\n" )
-            #self.textbox.pack(side = "top")
+        self.textbox.insert("0.0", "End of Trasaction History")
+        with open("transactions_log.csv", mode = 'r') as file:
+            reader = csv.reader(file, delimiter=',')
+            for i, row in enumerate(reader):
+                if i > 0:
+                #                                   User    Sold    Amount    Product       Time                                 New inventory
+                    self.textbox.insert("0.0", f"{row[0]} {row[2]} {row[3]} {row[1]}(s) at {row[4]}. The total invenotry is now {row[5]} \n\n")
+        self.textbox.pack()
+        file.close()
 
 
     def sidebar_inventory_event(self):
@@ -307,13 +331,9 @@ class App(customtkinter.CTk):
                 self.tree.insert(parent = "", index = 'end', text = '', values = (row['Product'], row['Amount']))
 
         self.tree.pack(side= "right", fill= "both", expand = True )
-
+        csvfile.close()
     def change_appearance_mode_event(self, new_appearance_mode: str):
         customtkinter.set_appearance_mode(new_appearance_mode)
-
-    def change_scaling_event(self, new_scaling: str):
-        new_scaling_float = int(new_scaling.replace("%", "")) / 100
-        customtkinter.set_widget_scaling(new_scaling_float)
 
     
 
