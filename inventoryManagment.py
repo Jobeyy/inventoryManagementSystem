@@ -1,4 +1,5 @@
 import customtkinter
+from customtkinter import CTkImage
 import tkinter as tk
 from tkinter import ttk, messagebox
 from PIL import ImageTk, Image
@@ -137,7 +138,9 @@ class App(customtkinter.CTk):
         self.appearance_mode_label = customtkinter.CTkLabel(self.sidebar_frame, text="Appearance Mode:", anchor="w").pack(pady = 30)
         self.appearance_mode_optionemenu = customtkinter.CTkOptionMenu(self.sidebar_frame, values=["Dark", "Light", "System"],command=self.change_appearance_mode_event).pack()
     
-    
+    def convert_image_to_photo(self, path : str):
+        image = CTkImage(light_image= Image.open(path), dark_image= Image.open(path), size = (200, 100))
+        return image
 
     def sidebar_products_event(self):
         self.clear_frame(self.main_frame)
@@ -151,54 +154,74 @@ class App(customtkinter.CTk):
         self.snacks_button.place(x = 375, y = 200)
         self.items_label = customtkinter.CTkLabel(self.main_frame, text = "Items",font=customtkinter.CTkFont(size=20, weight="bold"))
         self.items_label.place(x= 725, y = 150)
-        self.items_button = customtkinter.CTkButton(self.main_frame, text = "Items",width = 200, height = 100 )
+        self.items_button = customtkinter.CTkButton(self.main_frame, text = "Items",width = 200, height = 100, command = self.item_products)
         self.items_button.place(x = 650, y = 200)
 
     def drinks_products(self):
         self.clear_frame(self.main_frame)
-        self.blue_gatorade = customtkinter.CTkButton(self.main_frame,text = "Blue Gatorade" , width = 200, height = 100)
-        self.blue_gatorade.place(x = 100, y = 100)
-        self.red_gatorade = customtkinter.CTkButton(self.main_frame, text = "Red Gatorade" , width = 200, height = 100)
-        self.red_gatorade.place(x = 375, y = 100)
-        self.yellow_gatorade = customtkinter.CTkButton(self.main_frame, text = "Yellow Gatorade", width = 200, height = 100)
-        self.yellow_gatorade.place(x = 650, y = 100)
 
-        self.muscle_milk = customtkinter.CTkButton(self.main_frame, text = "Muscle Milk", width = 200, height = 100)
-        self.muscle_milk.place(x = 100 , y = 250)
-        self.super_shake_chocolate = customtkinter.CTkButton(self.main_frame, text = "Super Shake Chocolate", width = 200, height = 100)
-        self.super_shake_chocolate.place(x = 375 , y = 250)
-        self.super_shake_vinilla = customtkinter.CTkButton(self.main_frame, text = "Muscle Milk", width = 200, height = 100)
-        self.super_shake_vinilla.place(x = 650 , y = 250)
-
-        self.water = customtkinter.CTkButton(self.main_frame, text = "Water", width = 200, height = 100).place(x = 100 , y = 400)
-        self.rockstar = customtkinter.CTkButton(self.main_frame, text = "Rockstar", width = 200, height = 100).place(x = 375, y = 400)
-        self.redbull = customtkinter.CTkButton(self.main_frame, text = "Redbull", width = 200, height = 100).place(x  = 650, y = 400)
+        blue_gatorade_image  = self.convert_image_to_photo("static\\blueGatorade.png")
+        self.blue_gatorade = customtkinter.CTkButton(self.main_frame,image = blue_gatorade_image, text = "", width = 200, height = 100).place(x = 100, y = 100)
+        red_gatorade_image = self.convert_image_to_photo("static\\redGatorade.png")
+        self.red_gatorade = customtkinter.CTkButton(self.main_frame, text = "", image = red_gatorade_image , width = 200, height = 100).place(x = 375, y = 100)
+        yellow_gatorade_image = self.convert_image_to_photo("static\\limeGatorade.png")
+        self.yellow_gatorade = customtkinter.CTkButton(self.main_frame, text = "", image = yellow_gatorade_image, width = 200, height = 100).place(x = 650, y = 100)
+        muscle_milk_choc_image = self.convert_image_to_photo("static\\muscleMilk.png")
+        self.muscle_milk_chocolate = customtkinter.CTkButton(self.main_frame, text = "",image = muscle_milk_choc_image, width = 200, height = 100).place(x = 100 , y = 250)
+        super_shake_choc_image = self.convert_image_to_photo("static\\superShake.png")
+        self.super_shake_chocolate = customtkinter.CTkButton(self.main_frame, text = "",image = super_shake_choc_image, width = 200, height = 100).place(x = 650 , y = 250)
+        muscle_milk_vinil_image = self.convert_image_to_photo("static\\muscleVanilla.png")
+        self.muscle_milk_vinilla = customtkinter.CTkButton(self.main_frame, text = "",image = muscle_milk_vinil_image, width = 200, height = 100).place(x = 375 , y = 250)
+        water_image = self.convert_image_to_photo("static\\water.png")
+        self.water = customtkinter.CTkButton(self.main_frame, text = "",image = water_image, width = 200, height = 100).place(x = 100 , y = 400)
+        rockstar_image = self.convert_image_to_photo("static\\rockstar.png")
+        self.rockstar = customtkinter.CTkButton(self.main_frame, text = "", image = rockstar_image, width = 200, height = 100).place(x = 375, y = 400)
+        redbull_image = self.convert_image_to_photo("static\\redbull.png")
+        self.redbull = customtkinter.CTkButton(self.main_frame, text = "",image = redbull_image, width = 200, height = 100).place(x  = 650, y = 400)
 
 
     def snack_products(self):
         self.clear_frame(self.main_frame)
-        self.quest_double_chocolate = customtkinter.CTkButton(self.main_frame, text = "Quest Double Chocolate" , width = 200, height = 100).place(x = 100, y = 100)
-        self.quest_chocolate_chip = customtkinter.CTkButton(self.main_frame, text = "Quest Chocolate Chip" , width = 200, height = 100).place(x = 375, y = 100)
-        self.quest_pb = customtkinter.CTkButton(self.main_frame, text = "Quest PB", width = 200, height = 100).place(x = 650, y = 100)
-    
-        self.gatorade_chocolate_chip = customtkinter.CTkButton(self.main_frame, text = "Protein Bar Chocolate Chip", width = 200, height = 100).place(x = 100 , y = 250)
-        self.gatorade_pb = customtkinter.CTkButton(self.main_frame, text = "Protein Bar Peanut Butter", width = 200, height = 100).place(x = 375 , y = 250)
-        self.gatorade_caramel = customtkinter.CTkButton(self.main_frame, text = "Protein Bar Caramel", width = 200, height = 100).place(x = 650 , y = 250)
-    
-        self.loaded_taco = customtkinter.CTkButton(self.main_frame, text = "Quest Loaded Taco", width = 200, height = 100).place(x = 100 , y = 400)
-        self.chili_lime = customtkinter.CTkButton(self.main_frame, text = "Quest Chili Lime", width = 200, height = 100).place(x = 375, y = 400)
-        self.ranch = customtkinter.CTkButton(self.main_frame, text = "Quest Ranch", width = 200, height = 100).place(x  = 650, y = 400)
+        quest_double_chocolate = self.convert_image_to_photo("static\\questDC.png")
+        self.quest_double_chocolate = customtkinter.CTkButton(self.main_frame, text = "", image = quest_double_chocolate , width = 200, height = 100).place(x = 100, y = 100)
+        quest_cc_image = self.convert_image_to_photo("static\\questCC.png")
+        self.quest_chocolate_chip = customtkinter.CTkButton(self.main_frame, text = "" ,image = quest_cc_image, width = 200, height = 100).place(x = 375, y = 100)
+        quest_pb_image = self.convert_image_to_photo("static\\questPB.png")
+        self.quest_pb = customtkinter.CTkButton(self.main_frame, text = "",image = quest_pb_image, width = 200, height = 100).place(x = 650, y = 100)
+        gatorade_cc_image = self.convert_image_to_photo("static\\gatoradeCC.png")
+        self.gatorade_chocolate_chip = customtkinter.CTkButton(self.main_frame, text = "",image = gatorade_cc_image, width = 200, height = 100).place(x = 100 , y = 250)
+        gatorade_pb_image = self.convert_image_to_photo("static\\gatoradePB.png")
+        self.gatorade_pb = customtkinter.CTkButton(self.main_frame, text = "", width = 200, image = gatorade_pb_image, height = 100).place(x = 375 , y = 250)
+        gatorade_c_image = self.convert_image_to_photo("static\\gatoradeC.png")
+        self.gatorade_caramel = customtkinter.CTkButton(self.main_frame, text = "",image = gatorade_c_image, width = 200, height = 100).place(x = 650 , y = 250)
+        loaded_taco = self.convert_image_to_photo("static\\questLoadedTaco.png")
+        self.loaded_taco = customtkinter.CTkButton(self.main_frame, text = "", image = loaded_taco, width = 200, height = 100).place(x = 100 , y = 400)
+        chili_lime = self.convert_image_to_photo("static\\questChiliLime.png")
+        self.chili_lime = customtkinter.CTkButton(self.main_frame, text = "", image = chili_lime, width = 200, height = 100).place(x = 375, y = 400)
+        ranch = self.convert_image_to_photo("static\\questRanch.png")
+        self.ranch = customtkinter.CTkButton(self.main_frame, text = "", image = ranch, width = 200, height = 100).place(x  = 650, y = 400)
 
     def item_products(self):
         self.clear_frame(self.main_frame)
-        
-
-        
-    def inventory_button(self):
-        self.clear_frame(self.main_frame)
-
-        
-        
+        smallLock = self.convert_image_to_photo("static\\smallLock.png")
+        self.small_combination_lock = customtkinter.CTkButton(self.main_frame, text = "", image = smallLock , width = 200, height = 100).place(x = 100, y = 100)
+        masterLock = self.convert_image_to_photo("static\\masterLock.png")
+        self.master_combination_lock = customtkinter.CTkButton(self.main_frame, text = "",image = masterLock , width = 200, height = 100).place(x = 375, y = 100)
+        handWraps = self.convert_image_to_photo("static\\handWrap.png")
+        self.hand_wraps = customtkinter.CTkButton(self.main_frame, text = "",image = handWraps, width = 200, height = 100).place(x = 650, y = 100) 
+        shampoo = self.convert_image_to_photo("static\\travelSizeShampoo.png")
+        self.travel_size_shampoo = customtkinter.CTkButton(self.main_frame, text = "",image = shampoo, width = 200, height = 100).place(x = 100 , y = 250)
+        conditioner = self.convert_image_to_photo("static\\travelSizeConditioner.png")
+        self.travel_size_conditioner = customtkinter.CTkButton(self.main_frame, text = "", image = conditioner, width = 200, height = 100).place(x = 375 , y = 250)
+        racGoggles = self.convert_image_to_photo("static\\raqGoggles.png")
+        self.racquetball_goggles =  customtkinter.CTkButton(self.main_frame, text = "",image = racGoggles, width = 200, height = 100).place(x = 650 , y = 250)
+        swimGoggles = self.convert_image_to_photo("static\\swimGoggles.png")
+        self.swim_goggles = customtkinter.CTkButton(self.main_frame, text = "",image = swimGoggles, width = 200, height = 100).place(x = 100 , y = 400)
+        bottle = self.convert_image_to_photo("static\\gatoradeBottle.png")
+        self.gatorade_bottle = customtkinter.CTkButton(self.main_frame, text = "", image = bottle, width = 200, height = 100).place(x = 375, y = 400)
+        towel = self.convert_image_to_photo("static\\gatoradeTowel.png")
+        self.gatorade_towel = customtkinter.CTkButton(self.main_frame, text = "",image = towel, width = 200, height = 100).place(x  = 650, y = 400)
+            
         
     def open_input_dialog_event(self):
         dialog = customtkinter.CTkComboBox(text="Type in a number:", title="CTkInputDialog")
@@ -235,15 +258,12 @@ class App(customtkinter.CTk):
         self.tree.heading("Product", text = "Product", anchor="w")
         self.tree.heading("Amount", text = "Amount", anchor= "center")
 
-        #adding data
         with open('inventory.csv', newline='') as csvfile:
-            reader = csv.reader(csvfile)
-            next(reader)  # skip header row
-            for i, row in enumerate(reader, start=1):
-                self.tree.insert(parent='', index='end', iid=i, text='',
-                                  values=(row[0], row[1]))
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                self.tree.insert(parent = "", index = 'end', text = '', values = (row['Product'], row['Amount']))
 
-        self.tree.place(x = 150, y = 200)
+        self.tree.pack(side= "right", fill= "both", expand = True )
 
     def change_appearance_mode_event(self, new_appearance_mode: str):
         customtkinter.set_appearance_mode(new_appearance_mode)
