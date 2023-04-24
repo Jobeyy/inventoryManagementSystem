@@ -93,8 +93,6 @@ class App(customtkinter.CTk):
             #f.close()
         self.username = str(self.user_var.get())
         self.password = str(self.pass_var.get())
-        print("The name is : " + self.username)
-        print("The password is : " + self.password)
         if self.username not in self.userData:
             
             self.userData[self.username] = self.password  # add the new user data to the dictionary
