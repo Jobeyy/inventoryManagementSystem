@@ -95,6 +95,7 @@ class App(customtkinter.CTk):
         self.password = str(self.pass_var.get())
         if self.username not in self.userData:
             
+            
             self.userData[self.username] = self.password  # add the new user data to the dictionary
 
             # list of fieldnames for the CSV file
