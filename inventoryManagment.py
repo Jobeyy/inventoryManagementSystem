@@ -24,7 +24,7 @@ class App(customtkinter.CTk):
 
         
     def createMainView(self):
-        '''Dont change'''
+        
         #Check if their username and password is already in the system
         # if it isnt, tell them to sign up. 
         # if it is then continue 
@@ -36,7 +36,7 @@ class App(customtkinter.CTk):
         # sidebar Frame
         self.geometry("1100x580")
         self.title("Inventory Management System")
-        '''Dont Change'''
+        
         
         self.user_var = tk.StringVar()
         self.pass_var = tk.StringVar()
@@ -296,13 +296,13 @@ class App(customtkinter.CTk):
         self.textbox = customtkinter.CTkTextbox(self.main_frame, width = 600, height =500)
         data = []
         
-        self.textbox.insert("0.0", "End of Trasaction History")
+        self.textbox.insert("0.0", "End of Transaction History")
         with open("transactions_log.csv", mode = 'r') as file:
             reader = csv.reader(file, delimiter=',')
             for i, row in enumerate(reader):
                 if i > 0:
                 #                                   User    Sold    Amount    Product       Time                                 New inventory
-                    self.textbox.insert("0.0", f"{row[0]} {row[2]} {row[3]} {row[1]}(s) at {row[4]}. The total invenotry is now {row[5]} \n\n")
+                    self.textbox.insert("0.0", f"{row[0]} {row[2]} {row[3]} {row[1]}(s) at {row[4]}. The total inventory is now {row[5]} \n\n")
         self.textbox.pack()
         file.close()
 
