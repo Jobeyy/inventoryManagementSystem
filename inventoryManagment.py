@@ -263,6 +263,7 @@ class App(customtkinter.CTk):
         amount = dialog.get_input()
         saleType = "Sold"
         totalAmount = 0
+        canAdd = True
         if amount:
             with open('inventory.csv', 'r') as file:
                 reader = csv.reader(file)
@@ -274,16 +275,19 @@ class App(customtkinter.CTk):
                         if int(row[1]) >= int(amount):
                             row[1] = str(int(row[1]) - int(amount))
                             totalAmount = int(row[1])
+                            canAdd = True
                         else:
+                            canAdd = False
                             messagebox.showerror(title = "Error", message = "Not enough items to sell")
                     data.append(row)
             file.close()
-            # Update Transaction_log        
-            transaction_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            with open("transactions_log.csv", mode = 'a', newline = '') as file:
-                writer1 = csv.writer(file)
-                writer1.writerow([self.username, nameOfProduct, saleType, amount, transaction_time, totalAmount])
-            file.close()
+            # Update Transaction_log
+            if canAdd:       
+                transaction_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                with open("transactions_log.csv", mode = 'a', newline = '') as file:
+                    writer1 = csv.writer(file)
+                    writer1.writerow([self.username, nameOfProduct, saleType, amount, transaction_time, totalAmount])
+                file.close()
             #update csv
             with open('inventory.csv', "w", newline = '') as file:
                 writer2 = csv.writer(file)
