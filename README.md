@@ -24,4 +24,4 @@ To install this inventory management system, follow these steps:
 4. View Current Inventory by clicking "Inventory" tab.
 
 # Credits
-This inventory management system was developed by Jose Farias, Ryan Martinez, Salvador Pruneda.
+This inventory management system was developed by Jose Farias.
